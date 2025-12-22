@@ -19,7 +19,7 @@ const campersSlice = createSlice({
       })
       .addCase(getCampers.fulfilled, (state, action) => {
         state.loading = false;
-        state.campers = action.payload;
+        state.campers = action.payload.items;
       })
       .addCase(getCampers.rejected, (state, action) => {
         state.loading = false;

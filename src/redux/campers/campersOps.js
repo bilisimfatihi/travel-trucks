@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { fetchCampersApi, fetchCampersByIdApi } from "../../api/campersApi";
+import { fetchCampersApi, fetchCamperByIdApi } from "../../services/api.js";
 
 export const getCampers = createAsyncThunk(
   "campers/getCampers",
@@ -16,7 +16,7 @@ export const getCamperById = createAsyncThunk(
   "campers/getCamperById",
   async (id, thunkAPI) => {
     try {
-      const response = await fetchCampersByIdApi(id);
+      const response = await fetchCamperByIdApi(id);
       return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
