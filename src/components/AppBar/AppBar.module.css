@@ -1,15 +1,12 @@
 .header {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid #F7F7F7;
-    background-color: #F2F4F7;
-    height: 72px;
+    border-bottom: 1px solid #F2F4F7;
+    background-color: #F7F7F7;
 }
 
-.logo {
-    margin-left: 64px
+.inner {
+    display: flex;
+    align-items: center;
+    height: 72px;
 }
 
 .logoIcon {
@@ -32,9 +29,9 @@
 }
 
 .link.active {
-    color: #D84343;
+    color: var(--color-accent);
 }
 
 .link:hover {
-    color: #D84343;
+    color: var(--color-accent);
 }

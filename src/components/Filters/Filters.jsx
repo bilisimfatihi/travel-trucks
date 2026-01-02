@@ -2,20 +2,26 @@ import React, { useEffect, useState } from "react";
 import { setFilters } from "../../redux/filters/filtersSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
+import styles from "./Filters.module.css";
 
 const Filters = () => {
   const equipmentOptions = [
-    { label: "AC", name: "AC", value: "true" },
-    { label: "Automatic", name: "transmission", value: "true" },
-    { label: "Kitchen", name: "kitchen", value: "true" },
-    { label: "TV", name: "TV", value: "true" },
-    { label: "Bathroom", name: "bathroom", value: "true" },
+    { label: "AC", name: "AC", value: "true", icon: "wind" },
+    {
+      label: "Automatic",
+      name: "transmission",
+      value: "true",
+      icon: "diagram",
+    },
+    { label: "Kitchen", name: "kitchen", value: "true", icon: "cup-hot" },
+    { label: "TV", name: "TV", value: "true", icon: "tv" },
+    { label: "Bathroom", name: "bathroom", value: "true", icon: "ph_shower" },
   ];
 
   const typeOptions = [
-    { label: "Van", value: "panelTruck" },
-    { label: "Fully Integrated", value: "fullyIntegrated" },
-    { label: "Alcove", value: "alcove" },
+    { label: "Van", value: "panelTruck", icon: "bi_grid-1x2" },
+    { label: "Fully Integrated", value: "fullyIntegrated", icon: "bi_grid" },
+    { label: "Alcove", value: "alcove", icon: "bi_grid-3x3-gap" },
   ];
 
   const [draftFilters, setDraftFilters] = useState({});
@@ -29,7 +35,7 @@ const Filters = () => {
   }, [filters]);
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // Sayfa yenilenmesini engeller
+    e.preventDefault();
     const params = {};
     Object.entries(draftFilters).forEach(([key, value]) => {
       if (value !== undefined && value !== "") {
@@ -75,42 +81,83 @@ const Filters = () => {
           display: "inline-grid",
         }}
       >
-        <label>Location</label>
-        <input
-          name="location"
-          placeholder="Location"
-          value={draftFilters.location || ""}
-          onChange={handleChange}
-        />
-        <span>Vehicle Equipment:</span>
-        {equipmentOptions.map((option) => (
-          <div key={option.name}>
+        <div className={styles.location}>
+          <label>Location</label>
+          <div className={styles["input-group"]}>
+            <svg className={styles["input-icon"]}>
+              <use href="src/assets/icons.svg#map-grey"></use>
+            </svg>
             <input
-              type="checkbox"
-              name={option.name}
-              value={option.name === "transmission" ? "automatic" : "true"}
-              checked={Boolean(draftFilters[option.name])}
+              type="text"
+              name="location"
+              placeholder="Location"
+              value={draftFilters.location || ""}
               onChange={handleChange}
             />
-            <label>{option.label}</label>
           </div>
-        ))}
-
-        <span>Vehicle Type:</span>
-        {typeOptions.map((option) => (
-          <div key={option.value}>
-            <input
-              type="radio"
-              name="form"
-              value={option.value}
-              checked={draftFilters.form === option.value}
-              onClick={handleChange}
-            />
-            <label>{option.label}</label>
+        </div>
+        <p className={styles.title}>Filters</p>
+        <div className={styles.selections}>
+          <p>Vehicle Equipment</p>
+          <hr className={styles.hr} />
+          <div className={styles.options}>
+            {equipmentOptions.map((option) => (
+              <div key={option.name}>
+                <label>
+                  <input
+                    type="checkbox"
+                    className="hidden"
+                    name={option.name}
+                    value={
+                      option.name === "transmission" ? "automatic" : "true"
+                    }
+                    checked={Boolean(draftFilters[option.name])}
+                    onChange={handleChange}
+                  />
+                  <div className={styles.option}>
+                    <span className={styles.icon}>
+                      <svg>
+                        <use href={`src/assets/icons.svg#${option.icon}`}></use>
+                      </svg>
+                    </span>
+                    <span className={styles.label}>{option.label}</span>
+                  </div>
+                </label>
+              </div>
+            ))}
           </div>
-        ))}
-
-        <button type="submit">Search</button>
+        </div>
+        <div className={styles.selections}>
+          <p>Vehicle Type</p>
+          <hr className={styles.hr} />
+          <div className={styles.options}>
+            {typeOptions.map((option) => (
+              <div key={option.value}>
+                <label>
+                  <input
+                    type="radio"
+                    className="hidden"
+                    name="form"
+                    value={option.value}
+                    checked={draftFilters.form === option.value}
+                    onClick={handleChange}
+                  />
+                  <div className={styles.option}>
+                    <span className={styles.icon}>
+                      <svg>
+                        <use href={`src/assets/icons.svg#${option.icon}`}></use>
+                      </svg>
+                    </span>
+                    <span className={styles.label}>{option.label}</span>
+                  </div>
+                </label>
+              </div>
+            ))}
+          </div>
+        </div>
+        <button className="search-button" type="submit">
+          Search
+        </button>
       </form>
     </div>
   );

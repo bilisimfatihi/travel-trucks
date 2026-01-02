@@ -1,0 +1,99 @@
+.location label {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #6C717B;
+    margin-bottom: 8px;
+}
+
+.title {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--color-text-secondary);
+    margin-top: 0px;
+    margin-bottom: 32px;
+}
+
+.hr {
+    width: 100%;
+    border-top: 1px solid var(--color-border);
+    margin: 0px;
+}
+
+.selections {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.selections p {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--color-text-main);
+    font-weight: 600;
+    line-height: 24px;
+    margin: 0;
+}
+
+.options {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+
+}
+
+.options input[type="checkbox"]:checked+.option,
+.options input[type="radio"]:checked+.option {
+    border: 1px solid var(--color-accent);
+}
+
+.option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px 32px;
+    gap: 12px;
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    cursor: pointer;
+    height: 96px;
+    justify-content: center;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+}
+
+.label {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    letter-spacing: -0.005em;
+}
+
+.input-group {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+    margin-bottom: 40px;
+}
+
+.input-group input[type="text"] {
+    padding-left: 48px;
+}
+
+.input-icon {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    pointer-events: none;
+}

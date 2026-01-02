@@ -48,24 +48,28 @@ const CatalogPage = () => {
   };
 
   return (
-    <div style={{ display: "flex", gap: "20px" }}>
-      <div>
-        <Filters />
-      </div>
-      <div>
-        <h1>Catalog Page</h1>
-        {loading && <Loader />}
-        {error && <p>Error: {error}</p>}
-        {!loading && !error && (
-          <ul>
-            {campers.map((camper) => (
-              <CamperCard key={camper.id} camper={camper} />
-            ))}
-          </ul>
-        )}
-        {!loading && total > campers.length && (
-          <LoadMoreButton onClick={handleLoadMore} />
-        )}
+    <div className="container">
+      <div className="catalog">
+        <div>
+          <Filters />
+        </div>
+        <div>
+          <h1>Catalog Page</h1>
+          {loading && <Loader />}
+          {error && <p>Error: {error}</p>}
+          {!loading && !error && (
+            <ul className="camper-list">
+              {campers.map((camper) => (
+                <CamperCard key={camper.id} camper={camper} />
+              ))}
+            </ul>
+          )}
+          {!loading && total > campers.length && (
+            <div style={{ textAlign: "center" }}>
+              <LoadMoreButton onClick={handleLoadMore} />
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
