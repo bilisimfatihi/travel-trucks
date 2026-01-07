@@ -1,0 +1,44 @@
+.reviews {
+    display: flex;
+    flex-direction: column;
+    gap: 44px;
+}
+
+.person {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.heading {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 60px;
+    margin-right: 12px;
+    background-color: #F2F4F7;
+    color: #E44848;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 32px;
+    text-align: center;
+    align-content: center;
+}
+
+.icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+}
+
+.comment {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--color-text-secondary);
+}

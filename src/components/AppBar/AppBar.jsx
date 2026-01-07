@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
 import styles from "./AppBar.module.css";
-import Logo from "../../assets/traveltruckslogo.svg";
 
 const AppBar = () => {
   return (
@@ -9,7 +8,7 @@ const AppBar = () => {
         <div className={styles.inner}>
           <NavLink to="/" className={styles.logo}>
             <img
-              src={Logo}
+              src={`/traveltruckslogo.svg`}
               alt="Travel Trucks logo"
               className={styles.logoIcon}
             />

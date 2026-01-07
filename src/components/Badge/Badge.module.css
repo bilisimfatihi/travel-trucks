@@ -1,4 +1,6 @@
 .badge {
+    display: inline-flex;
+    align-items: center;
     color: var(--color-text-main);
     font-size: 16px;
     font-weight: 500;
@@ -6,7 +8,13 @@
     border-radius: 100px;
     background: #F2F4F7;
     font-weight: 500;
-    line-height: 24px;
-    height: 48px;
+    line-height: 1;
+    gap: 8px;
+}
 
+.icon {
+    display: block;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
 }

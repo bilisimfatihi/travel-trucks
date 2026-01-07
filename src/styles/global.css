@@ -72,7 +72,10 @@ ul {
     background-color: #D84343;
 }
 
-input[type="text"] {
+input[type="text"],
+input[type="email"],
+input[type="date"],
+textarea {
     font-family: inherit;
     font-size: 16px;
     font-weight: 400;
@@ -88,9 +91,17 @@ input[type="text"] {
 
 }
 
-input[type="text"]:focus {
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="date"]:focus,
+textarea:focus {
     border: 1px solid var(--color-accent);
     outline: none;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #6C717B;
 }
 
 

@@ -1,19 +1,8 @@
 import Badge from "../Badge/Badge";
 import styles from "./CamperCard.module.css";
+import { FEATURES } from "../../constants/const";
 
 const CamperCard = ({ camper }) => {
-  const features = [
-    "AC",
-    "TV",
-    "bathroom",
-    "gas",
-    "kitchen",
-    "microwave",
-    "radio",
-    "refrigerator",
-    "transmission",
-  ];
-
   return (
     <li className={styles.card}>
       <div className={styles.image}>
@@ -28,7 +17,7 @@ const CamperCard = ({ camper }) => {
             <span className={styles.price}>€{camper.price}.00</span>
             <button className={styles.fav}>
               <svg className={styles.icon}>
-                <use href="src/assets/icons.svg#heart-default"></use>
+                <use href="/icons.svg#heart-default"></use>
               </svg>
             </button>
           </div>
@@ -36,22 +25,24 @@ const CamperCard = ({ camper }) => {
         <div className={styles.inforow}>
           <div className={styles.rating}>
             <svg className={styles.icon}>
-              <use href="src/assets/icons.svg#star-pressed"></use>
+              <use href="/icons.svg#star-pressed"></use>
             </svg>
             {camper.rating} ({camper.reviews.length} Reviews)
           </div>
           <div className={styles.location}>
             {" "}
             <svg className={styles.icon}>
-              <use href="src/assets/icons.svg#map-grey"></use>
+              <use href="/icons.svg#map-grey"></use>
             </svg>
             {camper.location}
           </div>
         </div>
         <div className={styles.description}>{camper.description}</div>
         <div className={styles.features}>
-          {features.map((feature) =>
-            camper[feature] ? <Badge key={feature} badge={feature} /> : null
+          {FEATURES.map((feature) =>
+            String(camper[feature.name]) === feature.value ? (
+              <Badge key={feature.label} badge={feature} />
+            ) : null
           )}
         </div>
         <a href={`/catalog/${camper.id}`} className="search-button">

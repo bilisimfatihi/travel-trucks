@@ -1,0 +1,38 @@
+.features {
+    background: #F7F7F7;
+    padding: 44px 52px;
+    border-radius: 10px;
+}
+
+.badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.details {
+    margin-top: 100px;
+}
+
+.details h3 {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    color: var(--color-text-main);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}

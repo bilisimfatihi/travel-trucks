@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCampers } from "../redux/campers/campersOps";
-import { incrementPage, resetCampers } from "../redux/campers/campersSlice";
+import { getCampers } from "../../redux/campers/campersOps";
+import { incrementPage, resetCampers } from "../../redux/campers/campersSlice";
 import { useSearchParams } from "react-router-dom";
-import CamperCard from "../components/CamperCard/CamperCard";
-import Loader from "../components/Loader/Loader";
-import LoadMoreButton from "../components/LoadMoreButton/LoadMoreButton";
-import Filters from "../components/Filters/Filters";
-import { setFilters } from "../redux/filters/filtersSlice";
+import CamperCard from "../../components/CamperCard/CamperCard";
+import Loader from "../../components/Loader/Loader";
+import LoadMoreButton from "../../components/LoadMoreButton/LoadMoreButton";
+import Filters from "../../components/Filters/Filters";
+import { setFilters } from "../../redux/filters/filtersSlice";
 
 const CatalogPage = () => {
   const [searchParam] = useSearchParams();

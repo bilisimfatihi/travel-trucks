@@ -2,28 +2,10 @@ import React, { useEffect, useState } from "react";
 import { setFilters } from "../../redux/filters/filtersSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
+import { EQUIPMENT_OPTIONS, TYPE_OPTIONS } from "../../constants/const";
 import styles from "./Filters.module.css";
 
 const Filters = () => {
-  const equipmentOptions = [
-    { label: "AC", name: "AC", value: "true", icon: "wind" },
-    {
-      label: "Automatic",
-      name: "transmission",
-      value: "true",
-      icon: "diagram",
-    },
-    { label: "Kitchen", name: "kitchen", value: "true", icon: "cup-hot" },
-    { label: "TV", name: "TV", value: "true", icon: "tv" },
-    { label: "Bathroom", name: "bathroom", value: "true", icon: "ph_shower" },
-  ];
-
-  const typeOptions = [
-    { label: "Van", value: "panelTruck", icon: "bi_grid-1x2" },
-    { label: "Fully Integrated", value: "fullyIntegrated", icon: "bi_grid" },
-    { label: "Alcove", value: "alcove", icon: "bi_grid-3x3-gap" },
-  ];
-
   const [draftFilters, setDraftFilters] = useState({});
   const [searchParam, setSearchParam] = useSearchParams();
 
@@ -85,7 +67,7 @@ const Filters = () => {
           <label>Location</label>
           <div className={styles["input-group"]}>
             <svg className={styles["input-icon"]}>
-              <use href="src/assets/icons.svg#map-grey"></use>
+              <use href="/icons.svg#map-grey"></use>
             </svg>
             <input
               type="text"
@@ -101,7 +83,7 @@ const Filters = () => {
           <p>Vehicle Equipment</p>
           <hr className={styles.hr} />
           <div className={styles.options}>
-            {equipmentOptions.map((option) => (
+            {EQUIPMENT_OPTIONS.map((option) => (
               <div key={option.name}>
                 <label>
                   <input
@@ -115,9 +97,9 @@ const Filters = () => {
                     onChange={handleChange}
                   />
                   <div className={styles.option}>
-                    <span className={styles.icon}>
-                      <svg>
-                        <use href={`src/assets/icons.svg#${option.icon}`}></use>
+                    <span>
+                      <svg className={styles.icon}>
+                        <use href={`/icons.svg#${option.icon}`}></use>
                       </svg>
                     </span>
                     <span className={styles.label}>{option.label}</span>
@@ -131,7 +113,7 @@ const Filters = () => {
           <p>Vehicle Type</p>
           <hr className={styles.hr} />
           <div className={styles.options}>
-            {typeOptions.map((option) => (
+            {TYPE_OPTIONS.map((option) => (
               <div key={option.value}>
                 <label>
                   <input
@@ -143,9 +125,9 @@ const Filters = () => {
                     onClick={handleChange}
                   />
                   <div className={styles.option}>
-                    <span className={styles.icon}>
-                      <svg>
-                        <use href={`src/assets/icons.svg#${option.icon}`}></use>
+                    <span>
+                      <svg className={styles.icon}>
+                        <use href={`/icons.svg#${option.icon}`}></use>
                       </svg>
                     </span>
                     <span className={styles.label}>{option.label}</span>
