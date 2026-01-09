@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import styles from "./Reviews.module.css";
+import EmptyState from "../EmptyState/EmptyState";
 
 const Reviews = () => {
   const { selectedCamper } = useSelector((state) => state.campers);
@@ -7,7 +8,10 @@ const Reviews = () => {
   return (
     <div className={styles.reviews}>
       {selectedCamper.reviews.length === 0 ? (
-        <p>No reviews available.</p>
+        <EmptyState
+          title="No reviews yet"
+          description="Be the first to leave a review"
+        />
       ) : (
         <div>
           {selectedCamper.reviews.map((review, index) => (

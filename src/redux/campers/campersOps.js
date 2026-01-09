@@ -8,6 +8,9 @@ export const getCampers = createAsyncThunk(
       const response = await fetchCampersApi(params);
       return response;
     } catch (error) {
+      if (error.response?.status === 404) {
+        return { total: 0, items: [] };
+      }
       return thunkAPI.rejectWithValue(error.message);
     }
   }

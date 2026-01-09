@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { setFilters } from "../../redux/filters/filtersSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { EQUIPMENT_OPTIONS, TYPE_OPTIONS } from "../../constants/const";
 import styles from "./Filters.module.css";
 
 const Filters = () => {
   const [draftFilters, setDraftFilters] = useState({});
-  const [searchParam, setSearchParam] = useSearchParams();
+  const [, setSearchParams] = useSearchParams();
 
-  const dispatch = useDispatch();
   const filters = useSelector((state) => state.filters);
 
   useEffect(() => {
@@ -20,12 +18,11 @@ const Filters = () => {
     e.preventDefault();
     const params = {};
     Object.entries(draftFilters).forEach(([key, value]) => {
-      if (value !== undefined && value !== "") {
+      if (value !== undefined && value !== "" && value !== false) {
         params[key] = value;
       }
     });
-    setSearchParam(params);
-    dispatch(setFilters(draftFilters));
+    setSearchParams(params);
   };
 
   const handleChange = (e) => {

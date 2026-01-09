@@ -4,27 +4,29 @@ import { getCampers } from "../../redux/campers/campersOps";
 import { incrementPage, resetCampers } from "../../redux/campers/campersSlice";
 import { useSearchParams } from "react-router-dom";
 import CamperCard from "../../components/CamperCard/CamperCard";
-import Loader from "../../components/Loader/Loader";
 import LoadMoreButton from "../../components/LoadMoreButton/LoadMoreButton";
 import Filters from "../../components/Filters/Filters";
-import { setFilters } from "../../redux/filters/filtersSlice";
+import { resetFilters, setFilters } from "../../redux/filters/filtersSlice";
+import SkeletonCard from "../../components/SkeletonCard/SkeletonCard";
+import EmptyState from "../../components/EmptyState/EmptyState";
+import ErrorState from "../../components/ErrorState/ErrorState";
 
 const CatalogPage = () => {
-  const [searchParam] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useDispatch();
   const { total, page, campers, loading, error } = useSelector(
     (state) => state.campers
   );
   const filters = useSelector((state) => state.filters);
-  const params = Object.fromEntries([...searchParam]);
+  const params = Object.fromEntries([...searchParams]);
 
   useEffect(() => {
     if (Object.keys(params).length > 0) {
       dispatch(setFilters(params));
     } else {
-      dispatch(setFilters({})); // URL boşsa filtreyi sıfırla
+      dispatch(setFilters({}));
     }
-  }, [searchParam, dispatch]);
+  }, [searchParams, dispatch]);
 
   useEffect(() => {
     dispatch(resetCampers());
@@ -55,8 +57,32 @@ const CatalogPage = () => {
         </div>
         <div>
           <h1>Catalog Page</h1>
-          {loading && <Loader />}
-          {error && <p>Error: {error}</p>}
+          {loading && <SkeletonCard />}
+          {error && (
+            <ErrorState
+              message={error}
+              onRetry={() =>
+                dispatch(getCampers({ page: 1, limit: 4, ...filters }))
+              }
+            />
+          )}
+          {!loading && !error && campers.length === 0 && (
+            <EmptyState
+              title="No campers found"
+              description="Try adjusting your filters"
+              action={
+                <button
+                  className="search-button"
+                  onClick={() => {
+                    dispatch(resetFilters());
+                    setSearchParams({});
+                  }}
+                >
+                  Clear filters
+                </button>
+              }
+            />
+          )}
           {!loading && !error && (
             <ul className="camper-list">
               {campers.map((camper) => (
@@ -64,7 +90,7 @@ const CatalogPage = () => {
               ))}
             </ul>
           )}
-          {!loading && total > campers.length && (
+          {!loading && !error && total > campers.length && (
             <div style={{ textAlign: "center" }}>
               <LoadMoreButton onClick={handleLoadMore} />
             </div>
