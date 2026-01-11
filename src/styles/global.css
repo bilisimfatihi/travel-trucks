@@ -19,20 +19,6 @@ body {
     margin: 0 auto;
 }
 
-.catalog {
-    display: grid;
-    grid-template-columns: 360px 1fr;
-    gap: 64px;
-}
-
-.camper-list {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    padding: 0;
-    margin-bottom: 40px;
-}
-
 a {
     text-decoration: none;
     color: inherit;

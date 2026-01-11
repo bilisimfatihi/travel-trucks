@@ -30,6 +30,14 @@ const AppBar = () => {
             >
               Catalog
             </NavLink>
+            <NavLink
+              to="/favorites"
+              className={({ isActive }) =>
+                isActive ? `${styles.link} ${styles.active}` : styles.link
+              }
+            >
+              Favorites
+            </NavLink>
           </nav>
         </div>
       </div>

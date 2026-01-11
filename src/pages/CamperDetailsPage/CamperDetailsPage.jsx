@@ -21,7 +21,7 @@ const CamperDetailsPage = () => {
 
   return (
     <div className="container">
-      <div className="details-page">
+      <div className={styles.detailsPage}>
         {loading && <SkeletonCard />}
         {error && (
           <ErrorState

@@ -10,6 +10,7 @@ import { resetFilters, setFilters } from "../../redux/filters/filtersSlice";
 import SkeletonCard from "../../components/SkeletonCard/SkeletonCard";
 import EmptyState from "../../components/EmptyState/EmptyState";
 import ErrorState from "../../components/ErrorState/ErrorState";
+import styles from "./CatalogPage.module.css";
 
 const CatalogPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -51,7 +52,7 @@ const CatalogPage = () => {
 
   return (
     <div className="container">
-      <div className="catalog">
+      <div className={styles.catalogPage}>
         <div>
           <Filters />
         </div>
@@ -84,7 +85,7 @@ const CatalogPage = () => {
             />
           )}
           {!loading && !error && (
-            <ul className="camper-list">
+            <ul className={styles.camperList}>
               {campers.map((camper) => (
                 <CamperCard key={camper.id} camper={camper} />
               ))}

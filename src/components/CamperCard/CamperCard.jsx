@@ -1,8 +1,19 @@
 import Badge from "../Badge/Badge";
 import styles from "./CamperCard.module.css";
 import { FEATURES } from "../../constants/const";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleFavorite } from "../../redux/favorites/favoritesSlice";
 
 const CamperCard = ({ camper }) => {
+  const dispatch = useDispatch();
+
+  const favorites = useSelector((state) => state.favorites.items);
+  const isFavorite = favorites.some((item) => item.id === camper.id);
+
+  const handleFavoriteToggle = () => {
+    dispatch(toggleFavorite(camper));
+  };
+
   return (
     <li className={styles.card}>
       <div className={styles.image}>
@@ -15,9 +26,13 @@ const CamperCard = ({ camper }) => {
           </h3>
           <div className={styles.inforow}>
             <span className={styles.price}>€{camper.price}.00</span>
-            <button className={styles.fav}>
+            <button className={styles.fav} onClick={handleFavoriteToggle}>
               <svg className={styles.icon}>
-                <use href="/icons.svg#heart-default"></use>
+                {isFavorite ? (
+                  <use href="/icons.svg#heart-pressed"></use>
+                ) : (
+                  <use href="/icons.svg#heart-default"></use>
+                )}
               </svg>
             </button>
           </div>
