@@ -49,6 +49,7 @@ ul {
 }
 
 .search-button {
+    display: inline-block;
     font-family: inherit;
     cursor: pointer;
     background-color: #E44848;
