@@ -5,6 +5,7 @@ import CatalogPage from "../pages/CatalogPage/CatalogPage.jsx";
 import CamperDetailsPage from "../pages/CamperDetailsPage/CamperDetailsPage.jsx";
 import Features from "../components/Features/Features.jsx";
 import Reviews from "../components/Reviews/Reviews.jsx";
+import NotFoundPage from "../pages/NotFoundPage/NotFoundPage.jsx";
 
 const AppRouter = () => {
   return (
@@ -17,6 +18,7 @@ const AppRouter = () => {
           <Route path="features" element={<Features />} />
           <Route path="reviews" element={<Reviews />} />
         </Route>
+        <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
   );

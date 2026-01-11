@@ -50,11 +50,14 @@ ul {
 
 .search-button {
     display: inline-block;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    max-width: max-content;
+    height: auto;
     font-family: inherit;
     cursor: pointer;
     background-color: #E44848;
-    width: 166px;
-    height: 56px;
     color: #FFFFFF;
     font-size: 16px;
     font-weight: 500;
@@ -67,6 +70,7 @@ ul {
     padding-left: 40px;
     text-align: center;
     vertical-align: middle;
+    transition: background-color 0.3s ease;
 }
 
 .search-button:hover {
