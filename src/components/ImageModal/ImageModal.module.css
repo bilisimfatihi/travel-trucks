@@ -1,0 +1,38 @@
+.overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.image {
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.closeBtn {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: transparent;
+    border: none;
+    font-size: 32px;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.closeBtn:hover {
+    opacity: 0.8;
+}

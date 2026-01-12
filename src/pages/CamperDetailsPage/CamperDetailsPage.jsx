@@ -1,12 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Outlet, useParams } from "react-router-dom";
 import { getCamperById } from "../../redux/campers/campersOps";
-import Loader from "../../components/Loader/Loader";
 import styles from "./CamperDetailsPage.module.css";
 import BookingForm from "../../components/BookingForm/BookingForm";
 import SkeletonCard from "../../components/SkeletonCard/SkeletonCard";
 import ErrorState from "../../components/ErrorState/ErrorState";
+import ImageModal from "../../components/ImageModal/ImageModal";
 
 const CamperDetailsPage = () => {
   const { id } = useParams();
@@ -14,6 +14,7 @@ const CamperDetailsPage = () => {
   const { selectedCamper, loading, error } = useSelector(
     (state) => state.campers
   );
+  const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
     dispatch(getCamperById(id));
@@ -63,6 +64,7 @@ const CamperDetailsPage = () => {
                   key={index}
                   src={image.original}
                   alt={`${selectedCamper.name} ${index + 1}`}
+                  onClick={() => setSelectedImage(image.original)}
                 />
               ))}
             </div>
@@ -99,6 +101,12 @@ const CamperDetailsPage = () => {
               <BookingForm />
             </div>
           </>
+        )}
+        {selectedImage && (
+          <ImageModal
+            image={selectedImage}
+            onClose={() => setSelectedImage(null)}
+          />
         )}
       </div>
     </div>
